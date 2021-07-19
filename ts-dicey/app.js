@@ -1,3 +1,4 @@
+"use strict";
 var newButton = document.getElementById("new-button");
 var rollButton = document.getElementById("roll-button");
 var totalButton = document.getElementById("total-button");
@@ -7,10 +8,14 @@ var Die = /** @class */ (function () {
         var _this = this;
         this.div = document.createElement("div");
         this.div.className = "die";
-        diceContainer.append(this.div);
+        if (diceContainer != null) {
+            diceContainer.append(this.div);
+        }
         this.value = this.roll();
         this.div.addEventListener("click", function () { return _this.roll(); });
-        rollButton.addEventListener("click", function () { return _this.roll(); });
+        if (rollButton != null) {
+            rollButton.addEventListener("click", function () { return _this.roll(); });
+        }
         // rolling all could also be achieved by pushing each class when constructed into a global array and looping through on click to run roll()
         this.div.addEventListener("dblclick", function () { return _this.div.remove(); });
         // if you made a global array, you would need to remove the die from the array as well
@@ -43,34 +48,38 @@ var Die = /** @class */ (function () {
     };
     return Die;
 }());
-newButton.addEventListener("click", function () {
-    new Die();
-});
-totalButton.addEventListener("click", function () {
-    var dice = document.getElementsByClassName("die");
-    var total = 0;
-    // switched to textContent instead of innerText because Element did not have access to inner
-    for (var i = 0; i < dice.length; i++) {
-        if (dice[i].textContent === "⚀") {
-            total += 1;
+if (newButton != null) {
+    newButton.addEventListener("click", function () {
+        new Die();
+    });
+}
+if (totalButton != null) {
+    totalButton.addEventListener("click", function () {
+        var dice = document.getElementsByClassName("die");
+        var total = 0;
+        // switched to textContent instead of innerText because Element did not have access to inner
+        for (var i = 0; i < dice.length; i++) {
+            if (dice[i].textContent === "⚀") {
+                total += 1;
+            }
+            else if (dice[i].textContent === "⚁") {
+                total += 2;
+            }
+            else if (dice[i].textContent === "⚂") {
+                total += 3;
+            }
+            else if (dice[i].textContent === "⚃") {
+                total += 4;
+            }
+            else if (dice[i].textContent === "⚄") {
+                total += 5;
+            }
+            else if (dice[i].textContent === "⚅") {
+                total += 6;
+            }
         }
-        else if (dice[i].textContent === "⚁") {
-            total += 2;
-        }
-        else if (dice[i].textContent === "⚂") {
-            total += 3;
-        }
-        else if (dice[i].textContent === "⚃") {
-            total += 4;
-        }
-        else if (dice[i].textContent === "⚄") {
-            total += 5;
-        }
-        else if (dice[i].textContent === "⚅") {
-            total += 6;
-        }
-    }
-    alert("" + total);
-    // if using numbers instead of die faces, you would need to convert innertext to intergers using parseInt
-    // if wanting to use this.value to achieve the sum, you would need to have pushed dice into a global array upon creation and loop through to add the value to the total
-});
+        alert("" + total);
+        // if using numbers instead of die faces, you would need to convert innertext to intergers using parseInt
+        // if wanting to use this.value to achieve the sum, you would need to have pushed dice into a global array upon creation and loop through to add the value to the total
+    });
+}

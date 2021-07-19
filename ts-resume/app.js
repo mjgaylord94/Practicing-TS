@@ -1,3 +1,4 @@
+"use strict";
 // Variables
 var fullName = "Mitchell Gaylord";
 var career = "Coder-in-Training";

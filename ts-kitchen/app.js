@@ -1,3 +1,4 @@
+"use strict";
 // Create a variable that contains your name as a value
 var fullName = "Mitchell Gaylord";
 // Create a constant that contains the number of states in the U.S. and name it appropriately
