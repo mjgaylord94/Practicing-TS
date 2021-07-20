@@ -44,7 +44,7 @@ console.log(pet.name);
 console.log(pet.breed);
 
 // Create an array of 5 objects that contain name and age properties
-let array = [
+let array: Array<{name: string, age: number}> = [
     {name: "Julianna", age: 4},
     {name: "Bethany", age: 26},
     {name: "Coty", age: 2},
@@ -61,7 +61,7 @@ function getLength(word: string) {
     return word.length
 }
 
-let helloWorldLength = getLength('Hello World')
+let helloWorldLength: number = getLength('Hello World')
 
 if (helloWorldLength % 2 == 0) {
     console.log('The world is nice and even!')
